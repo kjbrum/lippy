@@ -56,13 +56,20 @@
 
         <textarea class="generated-text"></textarea>
 
+        <small>Quit (Cmd + Q)</small>
+
+        <!-- <p><a href="#">Preferences</a> | <a href="#" class="quit">Quit</a></p> -->
+
         <script>
+            const app = require('electron').app;
             const $ = require('jquery');
 
+            // Update paragraphs number
             $('input[name=paras]').on('input', function() {
                 $('.paragraphs').text($(this).val());
             });
 
+            // Request the filler text
             $('.filler-form').on('submit', function(e) {
                 e.preventDefault();
 
@@ -89,7 +96,7 @@
                         break;
                     case 'loripsum':
                         var html = 'plaintext'
-                        if (values.html == 'true') {
+                        if (values.html == 'html') {
                             html = '';
                         }
 
