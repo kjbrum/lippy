@@ -20,15 +20,22 @@
 
                 <li>
                     <label>
-                        <input type="radio" name="ipsum" value="loripsum">
-                        <span>Loripsum</span>
+                        <input type="radio" name="ipsum" value="bacon-ipsum">
+                        <span>Bacon Ipsum</span>
                     </label>
                 </li>
 
                 <li>
                     <label>
-                        <input type="radio" name="ipsum" value="bacon-ipsum">
-                        <span>Bacon Ipsum</span>
+                        <input type="radio" name="ipsum" value="dino-ipsum">
+                        <span>Dino Ipsum</span>
+                    </label>
+                </li>
+
+                <li>
+                    <label>
+                        <input type="radio" name="ipsum" value="loripsum">
+                        <span>Loripsum</span>
                     </label>
                 </li>
             </ul>
@@ -38,8 +45,8 @@
             </p>
 
             <p>
-                <label><input type="radio" name="html" value="false" checked="checked"> Plain</label>
-                <label><input type="radio" name="html" value="true"> HTML</label>
+                <label><input type="radio" name="html" value="text" checked="checked"> Plain</label>
+                <label><input type="radio" name="html" value="html"> HTML</label>
             </p>
 
             <p>
@@ -68,7 +75,17 @@
                 var url = '';
                 switch (values.ipsum) {
                     case 'hipsum':
-                        url = 'http://hipsterjesus.com/api?paras=' + values.paras + '&type=hipster-centric&html=' + values.html;
+                        var html = 'false'
+                        if (values.html == 'html') {
+                            html = 'html';
+                        }
+                        url = 'http://hipsterjesus.com/api?paras=' + values.paras + '&type=hipster-centric&html=' + html;
+                        break;
+                    case 'bacon-ipsum':
+                        url = 'https://baconipsum.com/api?type=meat-and-filler&paras=' + values.paras + '&format=' + values.html;
+                        break;
+                    case 'dino-ipsum':
+                        url = 'http://dinoipsum.herokuapp.com/api/?paragraphs=' + values.paras + '&format=' + values.html;
                         break;
                     case 'loripsum':
                         var html = 'plaintext'
@@ -78,15 +95,9 @@
 
                         url = 'http://loripsum.net/api/' + values.paras + '/medium/' + html;
                         break;
-                    case 'bacon-ipsum':
-                        var html = 'text'
-                        if (values.html == 'true') {
-                            html = 'html';
-                        }
-
-                        url = 'https://baconipsum.com/api?type=meat-and-filler&paras=' + values.paras + '&format=' + html;
-                        break;
                 }
+
+                console.log(url);
 
                 $.ajax({
                     url: url,

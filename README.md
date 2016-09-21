@@ -6,8 +6,9 @@
 ## Available Ipsums
 
 - [Hipsum](https://hipsum.co/)
-- [Loripsum](http://loripsum.net/)
 - [Bacon Ipsum](http://baconipsum.com/)
+- [Dino Ipsum](http://dinoipsum.herokuapp.com/)
+- [Loripsum](http://loripsum.net/)
 
 
 ## License
