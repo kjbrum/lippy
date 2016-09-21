@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>lippy | A minimal filler text menubar app.</title>
+        <link rel="stylesheet" href="./menu.css">
+    </head>
+
+    <body>
+        <h1>lippy</h1>
+
+        <form class="filler-form">
+            <ul class="ipsum-chooser">
+                <li>
+                    <label>
+                        <input type="radio" name="ipsum" value="hipsum" checked="checked">
+                        <span>Hipsum</span>
+                    </label>
+                </li>
+
+                <li>
+                    <label>
+                        <input type="radio" name="ipsum" value="loripsum">
+                        <span>Loripsum</span>
+                    </label>
+                </li>
+
+                <li>
+                    <label>
+                        <input type="radio" name="ipsum" value="bacon-ipsum">
+                        <span>Bacon Ipsum</span>
+                    </label>
+                </li>
+            </ul>
+
+            <p>
+                Paragraphs: <input type="range" name="paras" value="1" min="1" max="10"> <span class="paragraphs">1</span>
+            </p>
+
+            <p>
+                <label><input type="radio" name="html" value="false" checked="checked"> Plain</label>
+                <label><input type="radio" name="html" value="true"> HTML</label>
+            </p>
+
+            <p>
+                <input type="submit" value="Generate Hipsum">
+            </p>
+        </form>
+
+        <textarea class="generated-text"></textarea>
+
+        <script>
+            const $ = require('jquery');
+
+            $('input[name=paras]').on('input', function() {
+                $('.paragraphs').text($(this).val());
+            });
+
+            $('.filler-form').on('submit', function(e) {
+                e.preventDefault();
+
+                var inputs = $(this).serializeArray();
+                var values = {};
+                $.each($(this).serializeArray(), function(i, field) {
+                    values[field.name] = field.value;
+                });
+
+                var url = '';
+                switch (values.ipsum) {
+                    case 'hipsum':
+                        url = 'http://hipsterjesus.com/api?paras=' + values.paras + '&type=hipster-centric&html=' + values.html;
+                        break;
+                    case 'loripsum':
+                        var html = 'plaintext'
+                        if (values.html == 'true') {
+                            html = '';
+                        }
+
+                        url = 'http://loripsum.net/api/' + values.paras + '/medium/' + html;
+                        break;
+                    case 'bacon-ipsum':
+                        var html = 'text'
+                        if (values.html == 'true') {
+                            html = 'html';
+                        }
+
+                        url = 'https://baconipsum.com/api?type=meat-and-filler&paras=' + values.paras + '&format=' + html;
+                        break;
+                }
+
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    error: function(err) {
+                        console.log('error');
+                        console.log(err);
+                    },
+                    success: function(data) {
+                        console.log(data);
+                        if (values.ipsum == 'hipsum') {
+                            $('.generated-text').val(data.text);
+                        } else {
+                            $('.generated-text').val(data);
+                        }
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>

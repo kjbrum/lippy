@@ -1,0 +1,49 @@
+* {
+    -webkit-user-select: none;
+}
+
+body {
+    background: #D6DDFF;
+}
+
+textarea {
+    width: 98%;
+    height: 150px;
+    resize: none;
+}
+
+.ipsum-chooser {
+    width: 100%;
+    margin: 0;
+    padding: 0.25rem 0;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.ipsum-chooser li {
+    position: relative;
+    display: inline-block;
+    padding: 0 0.5rem;
+    color:  black;
+}
+
+.ipsum-chooser li:first-of-type {
+    padding-left: 0;
+}
+
+.ipsum-chooser li:last-of-type {
+    padding-right: 0;
+}
+
+.ipsum-chooser li:after {
+    content: '/';
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    transform: translateY(-50%);
+}
+
+.ipsum-chooser li:last-of-type:after {
+    content: none;
+}
