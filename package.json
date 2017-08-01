@@ -6,7 +6,7 @@
   "author": "Kyle Brumm <kjbrumm@gmail.com> (http://kylebrumm.com)",
   "main": "menu.js",
   "scripts": {
-    "start": "electron .",
+    "dev": "electron .",
     "build": "electron-packager . --out dist --arch x64 --platform mas --asar --overwrite",
     "build:all": "electron-packager . --out dist --asar --overwrite --all"
   },
