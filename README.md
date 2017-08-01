@@ -13,4 +13,4 @@
 
 ## License
 
-Copyright © [Kyle Brumm](http://kylebrumm.com). SocialDig.js is free to use on whatever and may be redistributed under the terms specified in the [license](LICENSE.md).
+Copyright © [Kyle Brumm](http://kylebrumm.com). Lippy is free to use on whatever and may be redistributed under the terms specified in the [license](LICENSE.md).
